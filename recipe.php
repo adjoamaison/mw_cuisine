@@ -16,7 +16,7 @@
 		*@param instruction
 		*@param image
 		*@param category
-		*@return
+		*@return sql result set
 		*/
 		function addRecipe($name,$chef,$overview,$ingredient,$instruction,$image,$category,$rating){
 			$str_query="INSERT INTO cuisine_recipe SET mealname='$name',chef_id='$chef',
@@ -28,7 +28,7 @@
 		/**
 		*description: A function to increment the rating of a recipe by one
 		*@param id
-		*@return
+		*@return sql result set
 		*/
 		function rateRecipe($id){
 			$str_query="UPDATE cuisine_recipe SET rating=rating+1 WHERE recipe_id='$id'";
@@ -37,10 +37,11 @@
 
 		/**
 		*description: A function to view all added recipes
-		*@return
+		*@return sql result set
 		*/
 		function viewRecipe(){
 			$str_query="SELECT * FROM cuisine_recipe";
+			return $this->query($str_query);
 		}
 	}
 ?>
