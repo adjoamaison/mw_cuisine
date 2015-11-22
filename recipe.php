@@ -25,5 +25,22 @@
 			return $this->query($str_query);
 		}
 
+		/**
+		*description: A function to increment the rating of a recipe by one
+		*@param id
+		*@return
+		*/
+		function rateRecipe($id){
+			$str_query="UPDATE cuisine_recipe SET rating=rating+1 WHERE recipe_id='$id'";
+			return $this->query($str_query);
+		}
+
+		/**
+		*description: A function to view all added recipes
+		*@return
+		*/
+		function viewRecipe(){
+			$str_query="SELECT * FROM cuisine_recipe";
+		}
 	}
 ?>
