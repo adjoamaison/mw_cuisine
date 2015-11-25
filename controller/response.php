@@ -114,7 +114,7 @@
 
     if($obj->viewRecipe()) {
       $row=$obj->fetch();
-      echo '{"result":1,"orders":[';
+      echo '{"result":1,"recipes":[';
       while($row){
         echo json_encode($row);
         $row=$obj->fetch();
@@ -147,8 +147,52 @@
       }
   }
 
+  /**
+  *description: A function that receives parameters from the url to add a new chef
+  * The parameters are name, number, address and email of the new chef.
+  * It echos a result of 1 when successful or 0 if unscuccessful
+  * in JSON format.
+  */
+  function addchef(){
+    $name=$_REQUEST['name'];
+    $number=$_REQUEST['number'];
+    $address=$_REQUEST['address'];
+    $email= $_REQUEST['email'];
 
+    include("chef.php");
+    $obj = new chef();
+    if($obj->addChef($name, $number, $address, $email)){
+      echo '{"result":1}';
+    }else {
+      echo '{"result":0}';
+    }
+  }
 
+  /**
+  *description: A function that views chef recorded in the database.
+  * It echos a result of 1 when successful or 0 if unscuccessful
+  * in JSON format.
+  */
+  function viewChef(){
+      include("chef.php");
+      $obj=new chef();
+
+      if($obj->viewChef()) {
+        $row=$obj->fetch();
+        echo '{"result":1,"chefs":[';
+        while($row){
+          echo json_encode($row);
+          $row=$obj->fetch();
+          if($row){
+            echo ",";
+          }
+        }
+        echo "]}";
+      }
+      else {
+        echo '{"result":0}';
+      }
+    }
 
 
 ?>
