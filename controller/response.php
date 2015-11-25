@@ -103,10 +103,52 @@
       }
   }
 
+  /**
+  *description: A function that displays recipes in the database.
+  *It echos a result of 1 when successful or 0 if unscuccessful
+  * in JSON format.
+  */
+  function viewRecipe(){
+    include("recipe.php");
+    $obj=new recipe();
 
-
-
-
-
+    if($obj->viewRecipe()) {
+      $row=$obj->fetch();
+      echo '{"result":1,"orders":[';
+      while($row){
+        echo json_encode($row);
+        $row=$obj->fetch();
+        if($row){
+          echo ",";
         }
+      }
+      echo "]}";
+    }
+    else {
+      echo '{"result":0}';
+    }
+  }
+
+  /**
+  *description: A function that rates a given recipe by incrementing its count by one.
+  * It echos a result of 1 when successful or 0 if unscuccessful
+  * in JSON format.
+  */
+  function rateRecipe(){
+      $id = $_REQUEST['id'];
+      include("recipe.php");
+      $obj=new recipe();
+
+      if($obj->rateRecipe($id)) {
+          echo '{"result":1}';
+      }
+      else {
+          echo '{"result":0}';
+      }
+  }
+
+
+
+
+
 ?>
