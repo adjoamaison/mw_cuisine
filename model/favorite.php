@@ -23,7 +23,6 @@
 		*/
 		function viewFavorite($name){
 			$str_query="SELECT * FROM cuisine_favorite WHERE username='$name'";
-			echo $str_query;
 			return $this->query($str_query);
 		}
 

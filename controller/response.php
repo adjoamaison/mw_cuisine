@@ -248,7 +248,7 @@
     function removeFavorite(){
       $id = $_REQUEST['id'];
       $name=$_REQUEST['name'];
-      include("favorite.php");
+      include("../model/favorite.php");
       $obj=new favorite();
 
       if($obj->removeFavorite($id, $name)) {
