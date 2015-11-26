@@ -94,7 +94,7 @@
       $image= $_REQUEST['image'];
       $cat=$_REQUEST['cat'];
 
-      include("recipe.php");
+      include("../model/recipe.php");
       $obj = new recipe();
       if($obj->addRecipe($name, $chef, $overview, $ingr,$inst,$image,$cat)){
           echo '{"result":1}';

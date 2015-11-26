@@ -18,10 +18,11 @@
 		*@param category
 		*@return sql result set
 		*/
-		function addRecipe($name,$chef,$overview,$ingredient,$instruction,$image,$category,$rating){
+		function addRecipe($name,$chef,$overview,$ingredient,$instruction,$image,$category){
 			$str_query="INSERT INTO cuisine_recipe SET mealname='$name',chef_id='$chef',
-				overview='$overview', ingredient_id='$ingredient_id', instruction='$instruction',
+				overview='$overview', ingredient_id='$ingredient', instruction_id='$instruction',
 				meal_image='$image', category_id='$category'";
+				echo $str_query;
 			return $this->query($str_query);
 		}
 
