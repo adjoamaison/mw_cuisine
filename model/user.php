@@ -26,23 +26,5 @@
 			$str_query="SELECT * cuisine_user WHERE user_id='$id'";
 			return $this->query($str_query);
 		}
-
-		/**
-		*description: A function to get a user's phone number from the database
-		*@return sql result set
-		*/
-		function getUnum($id){
-			$str_query="SELECT user_pnumber FROM cuisine_user WHERE user_id='$id'";
-			return $this->query($str_query);
-		}
-
-		/**
-		*description: A function to get a user's username from the database
-		*@return sql result set
-		*/
-		function getUname($id){
-			$str_query="SELECT username FROM cuisine_user WHERE user_id='$id'";
-			return $this->query($str_query);
-		}
 	}
   ?>

@@ -64,16 +64,16 @@
         break;
 
         case 14:
-            getUsername();
-        break;
-
-        case 15:
-            getUserNumber();
-        break;
-
-        case 16:
             getUser();
         break;
+
+        // case 15:
+        //
+        // break;
+        //
+        // case 16:
+        //
+        // break;
 
         default:
             echo '{"result":0,"message":"unknown command"}';
@@ -343,4 +343,41 @@
             echo '{"result":0}';
         }
     }
+
+    /**
+    * description: A function that adds a new user to the database using parameters from url.
+    * It echos a result of 1 when successful or 0 if unsuccessful in JSON format.
+    */
+    function addUser(){
+        $name = $_REQUEST['name'];
+        $pword = $_REQUEST['pword'];
+        $num = $_REQUEST['number'];
+        include("user.php");
+        $obj=new user();
+
+        if($obj->addUser($name, $pword, $num)) {
+            echo '{"result":1}';
+        }else {
+            echo '{"result":0}';
+        }
+    }
+
+/**
+* description: A function that gets a user using parameters from url.
+* It echos a result of 1 when successful or 0 if unsuccessful in JSON format.
+*/
+function getUser(){
+    $id=$_REQUEST['id'];
+    include("user.php");
+    $obj=new user();
+
+    if($obj->getUser($id)) {
+        $row=$obj->fetch();
+        echo '{"result":1,"user":[';
+            echo json_encode($row);
+        echo "]}";
+    }else {
+        echo '{"result":0}';
+    }
+}
 ?>
