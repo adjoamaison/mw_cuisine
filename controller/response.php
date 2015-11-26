@@ -82,7 +82,7 @@
 
     /**
     *description: A function that receives parameters from the url to add a recipe
-    * to the database. It echos a result of 1 when successful or 0 if unscuccessful
+    * to the database. It echos a result of 1 when successful or 0 if unsuccessful
     * in JSON format.
     */
     function addRecipe(){
@@ -101,11 +101,11 @@
       }else {
           echo '{"result":0}';
       }
-  }
+    }
 
   /**
   *description: A function that displays recipes in the database.
-  *It echos a result of 1 when successful or 0 if unscuccessful
+  *It echos a result of 1 when successful or 0 if unsuccessful
   * in JSON format.
   */
   function viewRecipe(){
@@ -131,7 +131,7 @@
 
   /**
   *description: A function that rates a given recipe by incrementing its count by one.
-  * It echos a result of 1 when successful or 0 if unscuccessful
+  * It echos a result of 1 when successful or 0 if unsuccessful
   * in JSON format.
   */
   function rateRecipe(){
@@ -150,7 +150,7 @@
   /**
   *description: A function that receives parameters from the url to add a new chef
   * The parameters are name, number, address and email of the new chef.
-  * It echos a result of 1 when successful or 0 if unscuccessful
+  * It echos a result of 1 when successful or 0 if unsuccessful
   * in JSON format.
   */
   function addchef(){
@@ -170,7 +170,7 @@
 
   /**
   *description: A function that views chef recorded in the database.
-  * It echos a result of 1 when successful or 0 if unscuccessful
+  * It echos a result of 1 when successful or 0 if unsuccessful
   * in JSON format.
   */
   function viewChef(){
@@ -194,5 +194,68 @@
       }
     }
 
+    /**
+    *description: A function that receives parameters from the url to add a user's favorite recipe.
+    * It echos a result of 1 when successful or 0 if unsuccessful
+    * in JSON format.
+    */
+    function addFavorite(){
+      $name=$_REQUEST['name'];
+      $recipe=$_REQUEST['recipe'];
 
+      include("favorite.php");
+      $obj = new favorite();
+      if($obj->addFavorite($name, $recipe)){
+          echo '{"result":1}';
+      }else {
+          echo '{"result":0}';
+      }
+    }
+
+    /**
+    *description: A function that views a user's favorited recipes using parameter from url.
+    * It echos a result of 1 when successful or 0 if unsuccessful
+    * in JSON format.
+    */
+    function viewFavorite(){
+      $name=$_REQUEST['$name'];
+      include("favorite.php");
+      $obj=new favorite();
+
+      if($obj->viewFavorite($name)) {
+        $row=$obj->fetch();
+        echo '{"result":1,"favorites":[';
+        while($row){
+          echo json_encode($row);
+          $row=$obj->fetch();
+          if($row){
+            echo ",";
+          }
+        }
+        echo "]}";
+      }
+      else {
+        echo '{"result":0}';
+      }
+    }
+
+    /**
+    *description: A function that removes a user's favorited recipe from the list
+    * of favorites using parameters (name and id) from url.
+    * It echos a result of 1 when successful or 0 if unsuccessful
+    * in JSON format.
+    */
+    function removeFavorite(){
+      $id = $_REQUEST['id'];
+      $name=$_REQUEST['name'];
+      include("favorite.php");
+      $obj=new favorite();
+
+      if($obj->removeFavorite($id, $name)) {
+        echo '{"result":1}';
+      }
+      else {
+        echo '{"result":0}';
+      }
+    }
 ?>

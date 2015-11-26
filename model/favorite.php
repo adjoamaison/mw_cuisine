@@ -21,8 +21,8 @@
 		*description: A function to view a user's favorite recipes
 		*@return sql result set
 		*/
-		function viewFavorite(){
-			$str_query="SELECT * cuisine_favorite";
+		function viewFavorite($name){
+			$str_query="SELECT * cuisine_favorite WHERE username='$name'";
 			return $this->query($str_query);
 		}
 
@@ -30,8 +30,8 @@
 		*description: A function to delete a user's favorite recipe from the database
 		*@return sql result set
 		*/
-		function removeFavorite($id){
-			$str_query="DELETE FROM cuisine_favorite WHERE fav_id='$id'";
+		function removeFavorite($id, $name){
+			$str_query="DELETE FROM cuisine_favorite WHERE fav_id='$id' and username='$name'";
 			return $this->query($str_query);
 		}
 	}
