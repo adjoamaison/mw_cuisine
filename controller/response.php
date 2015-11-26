@@ -301,4 +301,46 @@
             echo '{"result":0}';
         }
     }
+
+    /**
+    * description: A function that displays all the ingredients of a particular recipe using parameters from url.
+    * It echos a result of 1 when successful or 0 if unsuccessful in JSON format.
+    */
+    function addInstruction(){
+        $recipe=$_REQUEST['recipe'];
+        $instr=$_REQUEST['instruction'];
+
+        include("instruction.php");
+        $obj = new instruction();
+        if($obj->addInstruction($recipe, $instr)){
+            echo '{"result":1}';
+        }else {
+            echo '{"result":0}';
+        }
+    }
+
+    /**
+    * description: A function that displays all the ingredients of a particular recipe using parameters from url.
+    * It echos a result of 1 when successful or 0 if unsuccessful in JSON format.
+    */
+    function viewInstruction(){
+        $id=$_REQUEST['id'];
+        include("instruction.php");
+        $obj=new instruction();
+
+        if($obj->getInstruction($id)) {
+            $row=$obj->fetch();
+            echo '{"result":1,"instructions":[';
+            while($row){
+                echo json_encode($row);
+                $row=$obj->fetch();
+                if($row){
+                    echo ",";
+                }
+            }
+            echo "]}";
+        }else {
+            echo '{"result":0}';
+        }
+    }
 ?>
