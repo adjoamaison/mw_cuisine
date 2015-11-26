@@ -310,7 +310,7 @@
         $recipe=$_REQUEST['recipe'];
         $instr=$_REQUEST['instruction'];
 
-        include("instruction.php");
+        include("../model/instruction.php");
         $obj = new instruction();
         if($obj->addInstruction($recipe, $instr)){
             echo '{"result":1}';
@@ -325,7 +325,7 @@
     */
     function viewInstruction(){
         $id=$_REQUEST['id'];
-        include("instruction.php");
+        include("../model/instruction.php");
         $obj=new instruction();
 
         if($obj->getInstruction($id)) {
@@ -352,7 +352,7 @@
         $name = $_REQUEST['name'];
         $pword = $_REQUEST['pword'];
         $num = $_REQUEST['number'];
-        include("user.php");
+        include("../model/user.php");
         $obj=new user();
 
         if($obj->addUser($name, $pword, $num)) {
@@ -368,7 +368,7 @@
 */
 function getUser(){
     $id=$_REQUEST['id'];
-    include("user.php");
+    include("../model/user.php");
     $obj=new user();
 
     if($obj->getUser($id)) {

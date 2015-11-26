@@ -14,7 +14,7 @@
 		*@return sql result set
 		*/
 		function addUser($name,$pword,$number){
-			$str_query="INSERT INTO cuisine_user SET username='$name', fav_recipe_id='$recipe', user_pnumber='$number'";
+			$str_query="INSERT INTO cuisine_user SET username='$name', upassword='$pword', user_pnumber='$number'";
 			return $this->query($str_query);
 		}
 
@@ -23,7 +23,7 @@
 		*@return sql result set
 		*/
 		function getUser($id){
-			$str_query="SELECT * cuisine_user WHERE user_id='$id'";
+			$str_query="SELECT * FROM cuisine_user WHERE user_id='$id'";
 			return $this->query($str_query);
 		}
 	}

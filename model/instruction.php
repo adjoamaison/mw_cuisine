@@ -5,7 +5,7 @@
 	*description: A class that manages the interactions of instructions of a recipe with the database
 	*/
 	include("adb.php");
-	class instructions extends adb{
+	class instruction extends adb{
 		/**
 		*description: A function to add instructions of a recipe to the database
 		*@param recipe
