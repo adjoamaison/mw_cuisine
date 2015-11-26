@@ -136,7 +136,7 @@
   */
   function rateRecipe(){
       $id = $_REQUEST['id'];
-      include("recipe.php");
+      include("../model/recipe.php");
       $obj=new recipe();
 
       if($obj->rateRecipe($id)) {
