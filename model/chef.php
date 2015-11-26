@@ -18,7 +18,7 @@
 		function addChef($name,$number,$address,$email){
 			$str_query="INSERT INTO cuisine_chef set chef_name='$name', chef_pnumber='$number',
 				chef_address='$address', chef_email='$email'";
-			return this->query($str_query);
+			return $this->query($str_query);
 		}
 
 		/**

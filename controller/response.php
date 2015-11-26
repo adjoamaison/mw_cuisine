@@ -159,7 +159,7 @@
     $address=$_REQUEST['address'];
     $email= $_REQUEST['email'];
 
-    include("chef.php");
+    include("../model/chef.php");
     $obj = new chef();
     if($obj->addChef($name, $number, $address, $email)){
       echo '{"result":1}';
