@@ -203,7 +203,7 @@
       $name=$_REQUEST['name'];
       $recipe=$_REQUEST['recipe'];
 
-      include("favorite.php");
+      include("../model/favorite.php");
       $obj = new favorite();
       if($obj->addFavorite($name, $recipe)){
           echo '{"result":1}';
@@ -218,8 +218,8 @@
     * in JSON format.
     */
     function viewFavorite(){
-      $name=$_REQUEST['$name'];
-      include("favorite.php");
+      $name=$_REQUEST['name'];
+      include("../model/favorite.php");
       $obj=new favorite();
 
       if($obj->viewFavorite($name)) {

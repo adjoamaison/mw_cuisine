@@ -22,7 +22,8 @@
 		*@return sql result set
 		*/
 		function viewFavorite($name){
-			$str_query="SELECT * cuisine_favorite WHERE username='$name'";
+			$str_query="SELECT * FROM cuisine_favorite WHERE username='$name'";
+			echo $str_query;
 			return $this->query($str_query);
 		}
 
