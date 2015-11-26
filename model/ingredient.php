@@ -22,7 +22,7 @@
 		*@return sql result set
 		*/
 		function getIngredients($id){
-			$str_query="SELECT * cuisine_ingredient WHERE recipe_id='$id'";
+			$str_query="SELECT * FROM cuisine_ingredient WHERE recipe_id='$id'";
 			return $this->query($str_query);
 		}
 

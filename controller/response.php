@@ -267,7 +267,7 @@
         $recipe=$_REQUEST['recipe'];
         $ingre=$_REQUEST['ingre'];
 
-        include("ingredient.php");
+        include("../model/ingredient.php");
         $obj = new ingredient();
         if($obj->addIngredient($recipe, $ingre)){
             echo '{"result":1}';
@@ -282,7 +282,7 @@
     */
     function viewIngredient(){
         $id=$_REQUEST['id'];
-        include("ingredient.php");
+        include("../model/ingredient.php");
         $obj=new ingredient();
 
         if($obj->getIngredients($id)) {
