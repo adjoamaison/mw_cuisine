@@ -174,25 +174,25 @@
   * in JSON format.
   */
   function viewChef(){
-      include("chef.php");
-      $obj=new chef();
+    include("chef.php");
+    $obj=new chef();
 
-      if($obj->viewChef()) {
+    if($obj->viewChef()) {
+      $row=$obj->fetch();
+      echo '{"result":1,"chefs":[';
+      while($row){
+        echo json_encode($row);
         $row=$obj->fetch();
-        echo '{"result":1,"chefs":[';
-        while($row){
-          echo json_encode($row);
-          $row=$obj->fetch();
-          if($row){
-            echo ",";
-          }
+        if($row){
+          echo ",";
         }
-        echo "]}";
       }
-      else {
-        echo '{"result":0}';
-      }
+      echo "]}";
     }
+    else {
+      echo '{"result":0}';
+    }
+  }
 
     /**
     *description: A function that receives parameters from the url to add a user's favorite recipe.
@@ -257,5 +257,48 @@
       else {
         echo '{"result":0}';
       }
+    }
+
+    /**
+    * description: A function that adds ingredients to the database using parameters (recipe id and name) from url.
+    * It echos a result of 1 when successful or 0 if unsuccessful in JSON format.
+    */
+    function addIngredient(){
+        $recipe=$_REQUEST['recipe'];
+        $ingre=$_REQUEST['ingre'];
+
+        include("ingredient.php");
+        $obj = new ingredient();
+        if($obj->addIngredient($recipe, $ingre)){
+            echo '{"result":1}';
+        }else {
+            echo '{"result":0}';
+        }
+    }
+
+    /**
+    * description: A function that displays all the ingredients of a particular recipe using parameters from url.
+    * It echos a result of 1 when successful or 0 if unsuccessful in JSON format.
+    */
+    function viewIngredient(){
+        $id=$_REQUEST['id'];
+        include("ingredient.php");
+        $obj=new ingredient();
+
+        if($obj->getIngredients($id)) {
+            $row=$obj->fetch();
+            echo '{"result":1,"ingredients":[';
+            while($row){
+                echo json_encode($row);
+                $row=$obj->fetch();
+                if($row){
+                    echo ",";
+                }
+            }
+            echo "]}";
+        }
+        else {
+            echo '{"result":0}';
+        }
     }
 ?>

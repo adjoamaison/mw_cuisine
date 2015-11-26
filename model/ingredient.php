@@ -5,7 +5,7 @@
 	*description: A class that manages the interactions of ingredients with the database
 	*/
 	include("adb.php");
-	class user ingredient adb{
+	class ingredient extends adb{
 		/**
 		*description: A function to add an ingredient to the database
 		*@param recipe
