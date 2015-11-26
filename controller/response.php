@@ -174,7 +174,7 @@
   * in JSON format.
   */
   function viewChef(){
-    include("chef.php");
+    include("../model/chef.php");
     $obj=new chef();
 
     if($obj->viewChef()) {
