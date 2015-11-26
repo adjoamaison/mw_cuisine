@@ -109,7 +109,7 @@
   * in JSON format.
   */
   function viewRecipe(){
-    include("recipe.php");
+    include("../model/recipe.php");
     $obj=new recipe();
 
     if($obj->viewRecipe()) {
